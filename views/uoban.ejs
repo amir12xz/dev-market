@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>آن‌بَن کاربر</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Vazirmatn, "Segoe UI", Tahoma, Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      width: 320px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+    }
+    .input-box {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    input[type="text"] {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      outline: none;
+      text-align: center;
+    }
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #6a0dad;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #4b007b;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>آن‌بَن کاربر</h1>
+    <form action="/admin/unban" method="POST">
+      <div class="input-box">
+        <input type="text" name="username" placeholder="یوزر نیم کاربر" required>
+      </div>
+      <button type="submit" class="btn">آن‌بَن کردن</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title><%= course.title %></title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #001f3f; 
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+    header a img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    .course-card {
+      background: #fff;
+      color: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      margin-bottom: 30px;
+    }
+    .course-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .course-content {
+      padding: 20px;
+    }
+    .course-content h2 {
+      margin: 10px 0;
+    }
+    .course-content p {
+      margin: 10px 0;
+    }
+    .sessions, .comments {
+      margin-top: 30px;
+    }
+    .sessions h3, .comments h3 {
+      margin-bottom: 15px;
+    }
+    .session-item, .comment-item {
+      background: #f5f5f5;
+      color: #000;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    form {
+      margin-top: 20px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      color: #000;
+    }
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      resize: vertical;
+    }
+    form button {
+      padding: 10px 20px;
+      background: #007bff;
+      border: none;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/loginscr">
+      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="login icon">
+    </a>
+  </header>
+
+  <main>
+     
+    <div class="course-card">
+      <img src="/coursepic/<%= course.background %>" alt="<%= course.title %>">
+      <div class="course-content">
+        <h2><%= course.title %></h2>
+        <p><strong>مدرس:</strong> <%= course.teacher %></p>
+        <p><strong>قیمت:</strong> <%= course.price %> تومان</p>
+        <p><strong>توضیحات:</strong> <%= course.description %></p>
+
+         
+        <form action="/buy/<%= course.courseid %>" method="POST">
+          <button type="submit" style="padding:10px 20px;background:#28a745;border:none;color:#fff;border-radius:8px;cursor:pointer;">
+            خرید دوره
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+   
+    <div class="sessions">
+      <h3>جلسات دوره</h3>
+      <% if (sessions && sessions.length > 0) { %>
+        <% sessions.forEach(s => { %>
+          <div class="session-item">
+            <p><strong><%= s.title %></strong></p>
+            <% if (s.isFree) { %>
+              <a href="<%= s.videoUrl %>" target="_blank">مشاهده رایگان</a>
+            <% } else { %>
+              <span>🔒 مخصوص خریداران</span>
+            <% } %>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>هنوز جلسه‌ای برای این دوره ثبت نشده است.</p>
+      <% } %>
+    </div>
+
+     
+    <div class="comments">
+      <h3>نظرات کاربران</h3>
+      <% if (comments && comments.length > 0) { %>
+        <% comments.forEach(c => { %>
+          <div class="comment-item">
+            <p><strong><%= c.user.username %>:</strong> <%= c.text %></p>
+            <% if (c.rating) { %>
+              <p>امتیاز: ⭐ <%= c.rating %> / 5</p>
+            <% } %>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>هنوز نظری ثبت نشده.</p>
+      <% } %>
+    </div>
+
+    
+    <form action="/add-comment/<%= course.courseid %>" method="POST">
+      <label for="text">نظر خود را بنویسید:</label>
+      <textarea name="text" id="text" rows="4" required></textarea>
+
+      <label for="rating">امتیاز (۱ تا ۵):</label>
+      <input type="number" name="rating" id="rating" min="1" max="5" required>
+
+      <button type="submit">ثبت نظر</button>
+    </form>
+  </main>
+</body>
+</html>

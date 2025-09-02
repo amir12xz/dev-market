@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>پروفایل کاربر</title>
+  <style>
+    :root { --purple: #6a0dad; --white: #ffffff; --card: rgba(255,255,255,0.12); }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--purple);
+      font-family: Vazirmatn, IRANSans, "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--white);
+      display: grid;
+      place-items: center;
+    }
+    .card {
+      width: min(92vw, 520px);
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+    p {
+      margin: 0 0 20px;
+      opacity: 0.9;
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .field {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+    .label { font-size: .85rem; opacity: .85; margin-bottom: 6px; }
+    .value { font-size: 1.05rem; font-weight: 700; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .btn {
+      flex: 1;
+      display: inline-block;
+      text-align: center;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 0;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--white);
+      transition: transform .08s ease, opacity .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); opacity: .9; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.8);
+    }
+    .btn-solid {
+      background: rgba(255,255,255,0.9);
+      color: #4b007b;
+    }
+    .muted { font-size: .9rem; opacity: .8; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>پروفایل</h1>
+    <p class="muted">خوش آمدید 👋</p>
+
+
+    <div style="display:flex; justify-content:flex-end; margin-bottom:16px;">
+      <label for="avatarInput" style="cursor:pointer;">
+        <img src="<%= user && user.picture ? '/pic/' + user.picture : '/pic/default.png' %>" 
+             alt="عکس پروفایل" 
+             style="width:90px; height:90px; border-radius:50%; border:2px solid white;">
+      </label>
+    </div>
+
+   
+    <form action="/profile/picture" method="POST" enctype="multipart/form-data" id="avatarForm">
+      <input type="file" id="avatarInput" name="picture" accept="image/*" style="display:none;">
+      <button type="submit" class="btn btn-outline" id="saveBtn" style="display:none; margin-bottom:16px;">
+        ذخیره عکس
+      </button>
+    </form>
+
+    <section class="row">
+      <div class="field">
+        <div class="label">نام</div>
+        <div class="value"><%= (user && user.name) ? user.name : '—' %></div>
+      </div>
+      <div class="field">
+        <div class="label">نام خانوادگی</div>
+        <div class="value"><%= (user && user.lastname) ? user.lastname : '—' %></div>
+      </div>
+    </section>
+
+    <section class="row">
+      <div class="field" style="grid-column: span 2;">
+        <div class="label">موجودی کیف پول</div>
+        <div class="value"><%= (user && user.money) ? user.money + ' تومان' : '۰ تومان' %></div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <a class="btn btn-outline" href="/logout">خروج</a>
+      <a class="btn btn-solid" href="/api/course/show">مشاهده سبد خرید</a>
+      <a class="btn btn-outline" href="/wallet/add">افزایش کیف پول</a>
+    </div>
+  </main>
+
+  <script>
+    const avatarInput = document.getElementById('avatarInput');
+    const saveBtn = document.getElementById('saveBtn');
+
+    avatarInput.addEventListener('change', () => {
+      if (avatarInput.files.length > 0) {
+        saveBtn.style.display = 'inline-block';
+      } else {
+        saveBtn.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

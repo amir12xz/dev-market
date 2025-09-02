@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>افزودن جلسه جدید</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      width: 400px;
+    }
+    form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <form action="/admin/add-session" method="POST" enctype="multipart/form-data">
+    <h2>افزودن جلسه جدید</h2>
+
+    <label for="courseid">ID دوره:</label>
+    <input type="text" name="courseid" id="courseid" required>
+
+    <label for="sessionName">اسم جلسه:</label>
+    <input type="text" name="sessionName" id="sessionName" required>
+
+    <label for="isFree">رایگان بودن:</label>
+    <select name="isFree" id="isFree" required>
+      <option value="true">رایگان</option>
+      <option value="false">غیررایگان</option>
+    </select>
+
+    <label for="video">انتخاب ویدیو:</label>
+    <input type="file" name="video" id="video" accept="video/*" required>
+
+    <button type="submit">ثبت جلسه</button>
+  </form>
+</body>
+</html>

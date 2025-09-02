@@ -1,0 +1,26 @@
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>ارتقاء به مدیر</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{ --primary:#0074D9; }
+body{background:var(--primary); font-family: Vazirmatn, Tahoma, Arial, sans-serif; margin:0; display:flex; align-items:center; justify-content:center; height:100vh}
+.container{background:#fff; padding:24px; border-radius:10px; width:360px; max-width:94%; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+h2{margin:0 0 12px}
+input{display:block; width:100%; margin:10px 0; padding:10px; border:1px solid #ccc; border-radius:6px}
+button{background:#2d89ff; color:#fff; border:none; padding:10px 20px; margin-top:10px; cursor:pointer; font-weight:700; border-radius:6px}
+.note{font-size:.95rem; color:#444; margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>ارتقاء یوزرنیم به مدیر</h2>
+<form action="/admin/change-role" method="post">
+<input type="text" name="username" placeholder="نام کاربری (بدون @)" required>
+<button type="submit">تبدیل به مدیر</button>
+</form>
+<div class="note">این فرم فقط نام کاربری را ارسال می‌کند. سمت سرور باید احراز هویت و مجوز را بررسی کند.</div>
+</div>
+</body>
+</html>

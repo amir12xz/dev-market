@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>شارژ کیف پول</title>
+  <style>
+    :root { --purple: #6a0dad; --white: #ffffff; --card: rgba(255,255,255,0.12); }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--purple);
+      font-family: Vazirmatn, IRANSans, "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--white);
+      display: grid;
+      place-items: center;
+    }
+    .card {
+      width: min(92vw, 420px);
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-align: center;
+    }
+    p {
+      margin: 0 0 20px;
+      opacity: 0.9;
+      text-align: center;
+    }
+    .input-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    label {
+      font-size: .95rem;
+      opacity: .9;
+    }
+    input[type="number"] {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      font-size: 1rem;
+      outline: none;
+      text-align: center;
+    }
+    input[type="number"]::placeholder { color: rgba(255,255,255,0.6); }
+    .actions { margin-top: 24px; text-align: center; }
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      background: rgba(255,255,255,0.9);
+      color: #4b007b;
+      transition: transform .1s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); opacity: .9; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>شارژ کیف پول</h1>
+    <p>مقدار شارژ مورد نظر را وارد کنید 💳</p>
+
+<form method="post" action="/wallet/add">
+  <div class="input-box">
+    <label for="amount">مبلغ (تومان)</label>
+    <input type="number" id="amount" name="money" placeholder="مثلاً 100000" min="1000" step="1000" required>
+  </div>
+
+  <div class="actions">
+    <button class="btn" type="submit" onclick="alert('کیف پول با مبلغ ' + document.getElementById('amount').value + ' تومان شارژ شد ✨')">شارژ کیف پول</button>
+  </div>
+</form>
+
+  </main>
+</body>
+</html>

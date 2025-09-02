@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ثبت نام</title>
+  <style>
+    body {
+      background: #0074D9; 
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    input {
+      display: block;
+      width: 250px;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #39FF14; 
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #0074D9;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>ثبت نام</h2>
+    <form action="/register/rs" method="post">
+      <input type="text" name="name" placeholder="نام ">
+      <input type="text" name="lastname" placeholder="نام خانوادگی">
+      <input type="text" name="username" placeholder="نام کاربری ">
+      <input type="password" name="password" placeholder="رمز ">
+      <button type="submit">ثبت نام</button>
+    </form>
+  </div>
+</body>
+</html>
